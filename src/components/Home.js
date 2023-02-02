@@ -1,8 +1,6 @@
-import { useState } from "react";
 import AboutUs from "./AboutUs";
 import Carousal from "./Carousal";
 import Footer from "./Footer";
-import LoginForm from "./LoginForm";
 import Navbar from "./Navbar";
 
 export default function Home(){

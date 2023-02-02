@@ -5,11 +5,8 @@ import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 import SendInquiry from './components/SendInquiry';
-import Navbar from './components/Navbar';
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +19,10 @@ function App() {
     {
       path: "/getintouch",
       element: <SendInquiry/>,
+    },
+    {
+      path: "/login",
+      element: <LoginForm/>,
     },
   ]);
   createRoot(document.getElementById("root")).render(

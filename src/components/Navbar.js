@@ -1,5 +1,3 @@
-import { useState } from "react";
-import SendInquiry from "./SendInquiry"
 import { Link } from "react-router-dom";
 
 export default function Navbar(){
@@ -20,7 +18,7 @@ export default function Navbar(){
           <a className="nav-link" href="/">Link</a>
         </li>
         <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </a>
           <ul className="dropdown-menu">
@@ -31,13 +29,16 @@ export default function Navbar(){
           </ul>
         </li>
         <li className="nav-item">
-          <a className="nav-link disabled">Disabled</a>
+          <a className="nav-link disabled" href="/">Disabled</a>
         </li>
       </ul>
       <div>
         <Link to="/getintouch">
-        <button type="button" className="btn btn-success btn-lg">Get In Touch With Us</button></Link>
-        <button className="btn btn-outline-success btn-lg" type="submit" style={{"marginLeft": "1rem"}}>Login</button>
+          <button type="button" className="btn btn-success btn-lg">Get In Touch With Us</button>
+        </Link>
+        <Link to="/login">
+          <button className="btn btn-outline-success btn-lg" type="submit" style={{"marginLeft": "1rem"}}>Login</button>
+        </Link>
       </div>
     </div>
   </div>
