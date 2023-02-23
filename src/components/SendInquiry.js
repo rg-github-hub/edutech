@@ -77,7 +77,7 @@ export default function SendInquiry(){
         {
             method : "POST",
             headers : {
-                "Content-Type" : "applocation/json"
+                "Content-Type" : "application/json"
             },
             body : JSON.stringify({firstName,lastName,education,email, phoneNumber,gender,state,country}),
         });

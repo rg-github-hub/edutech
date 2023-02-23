@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   MDBBtn,
   MDBContainer,
@@ -7,10 +7,39 @@ import {
   MDBInput
 }
 from 'mdb-react-ui-kit';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from './Navbar';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase';
 
-function App() {
+
+function LoginForm() {
+
+  const [error, setError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleOnSubmit = (e)=>{
+    e.preventDefault();
+    console.log(email + password);
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      navigate("/dashboard");
+      setError(false);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      setError(true);
+    });
+  }
   return (
     <>
     <Navbar></Navbar>
@@ -27,15 +56,16 @@ function App() {
               <h4 className="mt-1 mb-5 pb-1">Login</h4>
             </div>
 
-            <MDBInput wrapperClass='mb-4' placeholder='Username' id='form1' type='email'/>
-            <MDBInput wrapperClass='mb-4' placeholder='Password' id='form2' type='password'/>
-
+            <MDBInput wrapperClass='mb-4' placeholder='Username' id='form1' type='email' onChange={e => setEmail(e.target.value)}/>
+            <MDBInput wrapperClass='mb-4' placeholder='Password' id='form2' type='password' onChange={e => setPassword(e.target.value)}/>
 
             <div className="text-center pt-1 mb-5 pb-1">
-              <MDBBtn className="mb-4 w-100 gradient-custom-2">Sign in</MDBBtn>
+            {/* <Link to = "/dashboard"> */}
+            {/* </Link> */}
+              <MDBBtn className="mb-4 w-100 gradient-custom-2" onClick={handleOnSubmit}>Sign in</MDBBtn>
               <a className="text-muted" href="#!">Forgot password?</a>
             </div>
-
+            {error && <p>Incorrect Username or Password</p>}
             <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
               <p className="mb-0">Don't have an account?</p>
               <Link to="/getintouch">
@@ -71,4 +101,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginForm;

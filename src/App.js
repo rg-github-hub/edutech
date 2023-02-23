@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import SendInquiry from './components/SendInquiry';
+import Base from './components/dashboard/Base';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,14 @@ function App() {
       path: "/login",
       element: <LoginForm/>,
     },
+    {
+      path: "/dashboard",
+      element: <Base/>
+    },
+    {
+      path: "/dashboard/createNewUser",
+      element: <Base/>
+    }
   ]);
   createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
